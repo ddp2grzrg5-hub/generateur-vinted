@@ -4,35 +4,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Générateur d'annonces Vinted</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f7f7;
+      color: #222;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .carte {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #007782;
+      text-align: center;
+      font-size: 26px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #007782;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    h2 {
+      color: #007782;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .resultat {
+      background-color: #f2f7f7;
+      padding: 12px;
+      border-radius: 8px;
+      white-space: pre-line;
+      min-height: 20px;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Générateur d'annonces Vinted</h1>
+  <div class="carte">
 
-  <p>Décris ton article :</p>
+    <h1>Générateur d'annonces Vinted</h1>
 
-  <label>Marque :</label><br>
-  <input type="text" id="marque" placeholder="Ex : Nike"><br><br>
+    <label>Marque :</label>
+    <input type="text" id="marque" placeholder="Ex : Nike">
 
-  <label>Type d'article :</label><br>
-  <input type="text" id="type" placeholder="Ex : sweat à capuche"><br><br>
+    <label>Type d'article :</label>
+    <input type="text" id="type" placeholder="Ex : sweat à capuche">
 
-  <label>Taille :</label><br>
-  <input type="text" id="taille" placeholder="Ex : M"><br><br>
+    <label>Taille :</label>
+    <input type="text" id="taille" placeholder="Ex : M">
 
-  <label>État :</label><br>
-  <input type="text" id="etat" placeholder="Ex : très bon état"><br><br>
+    <label>État :</label>
+    <input type="text" id="etat" placeholder="Ex : très bon état">
 
-  <button onclick="generer()">Générer mon annonce</button>
+    <button onclick="generer()">Générer mon annonce</button>
 
-  <h2>Titre :</h2>
-  <p id="titre"></p>
+    <h2>Titre :</h2>
+    <p class="resultat" id="titre"></p>
 
-  <h2>Description :</h2>
-  <p id="description"></p>
+    <h2>Description :</h2>
+    <p class="resultat" id="description"></p>
 
-  <h2>Mots-clés :</h2>
-  <p id="motscles"></p>
+    <h2>Mots-clés :</h2>
+    <p class="resultat" id="motscles"></p>
+
+  </div>
 
   <script>
     function generer() {
