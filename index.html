@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Générateur d'annonces Vinted</title>
+  <title>Annonces Vinted en 10 secondes</title>
 
   <style>
     body {
@@ -11,22 +11,72 @@
       background-color: #f2f7f7;
       color: #222;
       margin: 0;
+      padding: 0;
+    }
+
+    .accueil {
+      background-color: #007782;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .accueil h1 {
+      color: white;
+      font-size: 30px;
+      margin: 0 0 10px 0;
+    }
+
+    .accueil p {
+      font-size: 17px;
+      margin: 0 0 20px 0;
+    }
+
+    .points {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .point {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .bouton-accueil {
+      display: inline-block;
+      background-color: white;
+      color: #007782;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .contenu {
       padding: 20px;
     }
 
     .carte {
       max-width: 500px;
-      margin: 0 auto;
+      margin: 0 auto 20px auto;
       background-color: white;
       padding: 24px;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
+    h2.titre-carte {
       color: #007782;
       text-align: center;
-      font-size: 26px;
+      font-size: 24px;
+      margin-top: 0;
     }
 
     label {
@@ -65,7 +115,7 @@
       margin-bottom: 8px;
     }
 
-    h2 {
+    h3 {
       color: #007782;
       font-size: 18px;
       margin-bottom: 4px;
@@ -79,98 +129,90 @@
       min-height: 20px;
       margin-top: 4px;
     }
+
+    .conseil {
+      margin-bottom: 14px;
+    }
+
+    .conseil b {
+      color: #007782;
+    }
   </style>
 </head>
 <body>
 
-  <div class="carte">
+  <div class="accueil">
+    <h1>Ton annonce Vinted en 10 secondes</h1>
+    <p>Titre, description et mots-clés prêts à copier-coller.</p>
 
-    <h1>Générateur d'annonces Vinted</h1>
+    <div class="points">
+      <span class="point">✅ Gratuit</span>
+      <span class="point">✅ Sans inscription</span>
+      <span class="point">✅ Pensé pour le mobile</span>
+    </div>
 
-    <label>Marque :</label>
-    <input type="text" id="marque" placeholder="Ex : Nike">
-
-    <label>Type d'article :</label>
-    <input type="text" id="type" placeholder="Ex : sweat à capuche">
-
-    <label>Taille :</label>
-    <input type="text" id="taille" placeholder="Ex : M">
-
-    <label>Couleur :</label>
-    <input type="text" id="couleur" placeholder="Ex : noir">
-
-    <label>Matière (facultatif) :</label>
-    <input type="text" id="matiere" placeholder="Ex : coton">
-
-    <label>État :</label>
-    <select id="etat">
-      <option>Neuf avec étiquette</option>
-      <option>Neuf sans étiquette</option>
-      <option selected>Très bon état</option>
-      <option>Bon état</option>
-      <option>État satisfaisant</option>
-    </select>
-
-    <label>Prix en € (facultatif) :</label>
-    <input type="number" id="prix" placeholder="Ex : 15">
-
-    <button onclick="generer()">Générer mon annonce</button>
-
-    <h2>Titre :</h2>
-    <button class="copier" onclick="copier('titre')">Copier</button>
-    <p class="resultat" id="titre"></p>
-
-    <h2>Description :</h2>
-    <button class="copier" onclick="copier('description')">Copier</button>
-    <p class="resultat" id="description"></p>
-
-    <h2>Mots-clés :</h2>
-    <button class="copier" onclick="copier('motscles')">Copier</button>
-    <p class="resultat" id="motscles"></p>
-
+    <a class="bouton-accueil" href="#generateur">Créer mon annonce</a>
   </div>
 
-  <script>
-    function generer() {
-      var marque = document.getElementById("marque").value;
-      var type = document.getElementById("type").value;
-      var taille = document.getElementById("taille").value;
-      var couleur = document.getElementById("couleur").value;
-      var matiere = document.getElementById("matiere").value;
-      var etat = document.getElementById("etat").value;
-      var prix = document.getElementById("prix").value;
+  <div class="contenu">
 
-      var titre = type + " " + marque + " " + couleur + " taille " + taille + " - " + etat;
+    <div class="carte" id="generateur">
 
-      var description = "👕 " + type + " " + marque + " " + couleur + ", taille " + taille + ".\n\n";
-      description += "✅ État : " + etat + ".\n";
-      if (matiere !== "") {
-        description += "🧵 Matière : " + matiere + ".\n";
-      }
-      if (prix !== "") {
-        description += "💶 Prix : " + prix + " € (négociable dans la limite du raisonnable).\n";
-      }
-      description += "\n📦 Envoi rapide et soigné.\n";
-      description += "💬 Une question ? Écris-moi, je réponds vite !\n";
-      description += "🔁 Pense à regarder mes autres articles : lot possible pour réduire les frais de port.";
+      <h2 class="titre-carte">Décris ton article</h2>
 
-      var motscles = "#" + marque.replace(/ /g, "") +
-        " #" + type.replace(/ /g, "") +
-        " #" + couleur.replace(/ /g, "") +
-        " #taille" + taille.replace(/ /g, "") +
-        " #vinted #bonneaffaire";
+      <label>Marque :</label>
+      <input type="text" id="marque" placeholder="Ex : Nike">
 
-      document.getElementById("titre").innerText = titre;
-      document.getElementById("description").innerText = description;
-      document.getElementById("motscles").innerText = motscles;
-    }
+      <label>Type d'article :</label>
+      <input type="text" id="type" placeholder="Ex : sweat à capuche">
 
-    function copier(id) {
-      var texte = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(texte);
-      alert("Copié !");
-    }
-  </script>
+      <label>Taille :</label>
+      <input type="text" id="taille" placeholder="Ex : M">
 
-</body>
-</html>
+      <label>Couleur :</label>
+      <input type="text" id="couleur" placeholder="Ex : noir">
+
+      <label>Matière (facultatif) :</label>
+      <input type="text" id="matiere" placeholder="Ex : coton">
+
+      <label>État :</label>
+      <select id="etat">
+        <option>Neuf avec étiquette</option>
+        <option>Neuf sans étiquette</option>
+        <option selected>Très bon état</option>
+        <option>Bon état</option>
+        <option>État satisfaisant</option>
+      </select>
+
+      <label>Prix en € (facultatif) :</label>
+      <input type="number" id="prix" placeholder="Ex : 15">
+
+      <button onclick="generer()">Générer mon annonce</button>
+
+      <h3>Titre :</h3>
+      <button class="copier" onclick="copier('titre')">Copier</button>
+      <p class="resultat" id="titre"></p>
+
+      <h3>Description :</h3>
+      <button class="copier" onclick="copier('description')">Copier</button>
+      <p class="resultat" id="description"></p>
+
+      <h3>Mots-clés :</h3>
+      <button class="copier" onclick="copier('motscles')">Copier</button>
+      <p class="resultat" id="motscles"></p>
+
+    </div>
+
+    <div class="carte">
+
+      <h2 class="titre-carte">Conseils pour mieux vendre</h2>
+
+      <p class="conseil"><b>📸 Soigne tes photos.</b> Prends-les à la lumière du jour, sur fond uni, avec l'article bien à plat ou porté. Montre l'étiquette et la taille.</p>
+
+      <p class="conseil"><b>🔍 Sois honnête sur les défauts.</b> Photographie les petits défauts et dis-le dans la description. Ça évite les litiges et ça rassure les acheteurs.</p>
+
+      <p class="conseil"><b>💶 Regarde les prix des autres.</b> Cherche le même article dans la même marque et le même état, et fixe ton prix un peu autour.</p>
+
+      <p class="conseil"><b>💬 Réponds vite.</b> Un vendeur qui répond rapidement donne plus confiance.</p>
+
+      <p class="conseil"><b>📦 Propose des lots.
