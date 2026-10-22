@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Générateur d'annonces Vinted</title>
+</head>
+<body>
+
+  <h1>Générateur d'annonces Vinted</h1>
+
+  <p>Décris ton article :</p>
+
+  <label>Marque :</label><br>
+  <input type="text" id="marque" placeholder="Ex : Nike"><br><br>
+
+  <label>Type d'article :</label><br>
+  <input type="text" id="type" placeholder="Ex : sweat à capuche"><br><br>
+
+  <label>Taille :</label><br>
+  <input type="text" id="taille" placeholder="Ex : M"><br><br>
+
+  <label>État :</label><br>
+  <input type="text" id="etat" placeholder="Ex : très bon état"><br><br>
+
+  <button onclick="generer()">Générer mon annonce</button>
+
+  <h2>Résultat :</h2>
+  <p id="resultat"></p>
+
+  <script>
+    function generer() {
+      var marque = document.getElementById("marque").value;
+      var type = document.getElementById("type").value;
+      var taille = document.getElementById("taille").value;
+      var etat = document.getElementById("etat").value;
+
+      var titre = type + " " + marque + " taille " + taille + " - " + etat;
+
+      document.getElementById("resultat").innerText = "Titre : " + titre;
+    }
+  </script>
+
+</body>
+</html>
