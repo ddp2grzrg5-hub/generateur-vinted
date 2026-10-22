@@ -96,6 +96,12 @@
     <label>Taille :</label>
     <input type="text" id="taille" placeholder="Ex : M">
 
+    <label>Couleur :</label>
+    <input type="text" id="couleur" placeholder="Ex : noir">
+
+    <label>Matière (facultatif) :</label>
+    <input type="text" id="matiere" placeholder="Ex : coton">
+
     <label>État :</label>
     <select id="etat">
       <option>Neuf avec étiquette</option>
@@ -104,6 +110,9 @@
       <option>Bon état</option>
       <option>État satisfaisant</option>
     </select>
+
+    <label>Prix en € (facultatif) :</label>
+    <input type="number" id="prix" placeholder="Ex : 15">
 
     <button onclick="generer()">Générer mon annonce</button>
 
@@ -126,17 +135,28 @@
       var marque = document.getElementById("marque").value;
       var type = document.getElementById("type").value;
       var taille = document.getElementById("taille").value;
+      var couleur = document.getElementById("couleur").value;
+      var matiere = document.getElementById("matiere").value;
       var etat = document.getElementById("etat").value;
+      var prix = document.getElementById("prix").value;
 
-      var titre = type + " " + marque + " taille " + taille + " - " + etat;
+      var titre = type + " " + marque + " " + couleur + " taille " + taille + " - " + etat;
 
-      var description =
-        type + " " + marque + " en taille " + taille + ".\n" +
-        "État : " + etat + ".\n" +
-        "Envoi rapide et soigné. N'hésite pas à me poser tes questions ou à faire une offre !";
+      var description = "👕 " + type + " " + marque + " " + couleur + ", taille " + taille + ".\n\n";
+      description += "✅ État : " + etat + ".\n";
+      if (matiere !== "") {
+        description += "🧵 Matière : " + matiere + ".\n";
+      }
+      if (prix !== "") {
+        description += "💶 Prix : " + prix + " € (négociable dans la limite du raisonnable).\n";
+      }
+      description += "\n📦 Envoi rapide et soigné.\n";
+      description += "💬 Une question ? Écris-moi, je réponds vite !\n";
+      description += "🔁 Pense à regarder mes autres articles : lot possible pour réduire les frais de port.";
 
       var motscles = "#" + marque.replace(/ /g, "") +
         " #" + type.replace(/ /g, "") +
+        " #" + couleur.replace(/ /g, "") +
         " #taille" + taille.replace(/ /g, "") +
         " #vinted #bonneaffaire";
 
