@@ -137,6 +137,36 @@
     .conseil b {
       color: #007782;
     }
+
+    .maj {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      margin-top: 0;
+    }
+
+    .tendance {
+      background-color: #f2f7f7;
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .tendance h4 {
+      margin: 0 0 6px 0;
+      color: #007782;
+      font-size: 16px;
+    }
+
+    .tendance p {
+      margin: 0 0 6px 0;
+      font-size: 14px;
+    }
+
+    .tendance .mots {
+      font-size: 13px;
+      color: #444;
+    }
   </style>
 </head>
 <body>
@@ -146,7 +176,7 @@
     <p>Titre, description et mots-clés prêts à copier-coller.</p>
 
     <div class="points">
-      <span class="point">✅ Gratuit</span>
+      <span class="point">✅ Gratuit pour commencer</span>
       <span class="point">✅ Sans inscription</span>
       <span class="point">✅ Pensé pour le mobile</span>
     </div>
@@ -205,6 +235,49 @@
 
     <div class="carte">
 
+      <h2 class="titre-carte">🔥 Tendances du moment</h2>
+      <p class="maj">Mis à jour : octobre 2026. Ce sont des tendances, pas des garanties de vente.</p>
+
+      <div class="tendance">
+        <h4>🧥 Streetwear vintage</h4>
+        <p>Pièces des années 90-2000 de marques comme Nike, The North Face, Carhartt ou Stüssy.</p>
+        <p class="mots">Mots-clés : vintage, 90s, Y2K, oversize, rare</p>
+      </div>
+
+      <div class="tendance">
+        <h4>👟 Sneakers</h4>
+        <p>New Balance (530, 9060) et Nike restent parmi les plus recherchées.</p>
+        <p class="mots">Mots-clés : sneakers, New Balance, pointure, boîte d'origine</p>
+      </div>
+
+      <div class="tendance">
+        <h4>🏃 Sportswear de marque</h4>
+        <p>Lululemon, Alo Yoga, Asics, Salomon, Arc'teryx.</p>
+        <p class="mots">Mots-clés : legging, brassière, running, outdoor</p>
+      </div>
+
+      <div class="tendance">
+        <h4>👖 Pantalon cargo</h4>
+        <p>Le cargo large se vend très bien en ce moment.</p>
+        <p class="mots">Mots-clés : cargo, baggy, utility, poches</p>
+      </div>
+
+      <div class="tendance">
+        <h4>🧒 Vêtements enfants de marque</h4>
+        <p>Petit Bateau, Ralph Lauren enfant, articles de naissance. Les lots plaisent aux parents.</p>
+        <p class="mots">Mots-clés : lot, bébé, naissance, Petit Bateau</p>
+      </div>
+
+      <div class="tendance">
+        <h4>🧱 Lego</h4>
+        <p>Les sets retirés de la vente (Star Wars, Ideas) prennent de la valeur avec le temps. Garde la boîte et la notice, et ne les ouvre pas si tu les vends neufs.</p>
+        <p class="mots">Mots-clés : Lego, set retiré, scellé, complet, notice</p>
+      </div>
+
+    </div>
+
+    <div class="carte">
+
       <h2 class="titre-carte">Conseils pour mieux vendre</h2>
 
       <p class="conseil"><b>📸 Soigne tes photos.</b> Prends-les à la lumière du jour, sur fond uni, avec l'article bien à plat ou porté. Montre l'étiquette et la taille.</p>
@@ -215,4 +288,55 @@
 
       <p class="conseil"><b>💬 Réponds vite.</b> Un vendeur qui répond rapidement donne plus confiance.</p>
 
-      <p class="conseil"><b>📦 Propose des lots.
+      <p class="conseil"><b>📦 Propose des lots.</b> Quand quelqu'un aime plusieurs de tes articles, un petit prix sur le lot l'aide à se décider et fait économiser des frais de port.</p>
+
+      <p class="conseil"><b>✏️ Un titre clair.</b> Mets la marque, le type d'article et la taille. C'est ce que les acheteurs tapent dans la recherche.</p>
+
+    </div>
+
+  </div>
+
+  <script>
+    function generer() {
+      var marque = document.getElementById("marque").value;
+      var type = document.getElementById("type").value;
+      var taille = document.getElementById("taille").value;
+      var couleur = document.getElementById("couleur").value;
+      var matiere = document.getElementById("matiere").value;
+      var etat = document.getElementById("etat").value;
+      var prix = document.getElementById("prix").value;
+
+      var titre = type + " " + marque + " " + couleur + " taille " + taille + " - " + etat;
+
+      var description = "👕 " + type + " " + marque + " " + couleur + ", taille " + taille + ".\n\n";
+      description += "✅ État : " + etat + ".\n";
+      if (matiere !== "") {
+        description += "🧵 Matière : " + matiere + ".\n";
+      }
+      if (prix !== "") {
+        description += "💶 Prix : " + prix + " € (négociable dans la limite du raisonnable).\n";
+      }
+      description += "\n📦 Envoi rapide et soigné.\n";
+      description += "💬 Une question ? Écris-moi, je réponds vite !\n";
+      description += "🔁 Pense à regarder mes autres articles : lot possible pour réduire les frais de port.";
+
+      var motscles = "#" + marque.replace(/ /g, "") +
+        " #" + type.replace(/ /g, "") +
+        " #" + couleur.replace(/ /g, "") +
+        " #taille" + taille.replace(/ /g, "") +
+        " #vinted #bonneaffaire";
+
+      document.getElementById("titre").innerText = titre;
+      document.getElementById("description").innerText = description;
+      document.getElementById("motscles").innerText = motscles;
+    }
+
+    function copier(id) {
+      var texte = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(texte);
+      alert("Copié !");
+    }
+  </script>
+
+</body>
+</html>
