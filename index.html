@@ -190,6 +190,24 @@
 
       <h2 class="titre-carte">Décris ton article</h2>
 
+      <label>Niche (facultatif) :</label>
+      <select id="niche">
+        <option value="aucune">Aucune</option>
+        <option value="streetwear">Streetwear vintage</option>
+        <option value="sneakers">Sneakers</option>
+        <option value="sportswear">Sportswear de marque</option>
+        <option value="cargo">Pantalon cargo</option>
+        <option value="enfant">Vêtements enfants</option>
+        <option value="lego">Lego</option>
+      </select>
+
+      <label>Ton de l'annonce :</label>
+      <select id="ton">
+        <option value="classique">Classique</option>
+        <option value="decontracte">Décontracté</option>
+        <option value="court">Court et direct</option>
+      </select>
+
       <label>Marque :</label>
       <input type="text" id="marque" placeholder="Ex : Nike">
 
@@ -297,7 +315,40 @@
   </div>
 
   <script>
+    var niches = {
+      aucune: {
+        mots: [],
+        phrase: ""
+      },
+      streetwear: {
+        mots: ["vintage", "90s", "y2k", "streetwear"],
+        phrase: "Style vintage streetwear, idéal pour un look années 90-2000."
+      },
+      sneakers: {
+        mots: ["sneakers", "baskets", "pointure"],
+        phrase: "Paire de baskets : la pointure est indiquée dans l'annonce."
+      },
+      sportswear: {
+        mots: ["sportswear", "running", "outdoor"],
+        phrase: "Idéal pour le sport comme pour le quotidien."
+      },
+      cargo: {
+        mots: ["cargo", "baggy", "utility"],
+        phrase: "Coupe ample et pratique, style cargo."
+      },
+      enfant: {
+        mots: ["enfant", "lot", "bebe"],
+        phrase: "Plusieurs articles enfant dans mon dressing : lot possible."
+      },
+      lego: {
+        mots: ["lego", "set", "collection"],
+        phrase: "Idéal pour les fans et les collectionneurs de Lego."
+      }
+    };
+
     function generer() {
+      var niche = document.getElementById("niche").value;
+      var ton = document.getElementById("ton").value;
       var marque = document.getElementById("marque").value;
       var type = document.getElementById("type").value;
       var taille = document.getElementById("taille").value;
@@ -306,25 +357,69 @@
       var etat = document.getElementById("etat").value;
       var prix = document.getElementById("prix").value;
 
-      var titre = type + " " + marque + " " + couleur + " taille " + taille + " - " + etat;
+      var infosNiche = niches[niche];
+      var article = type + " " + marque + " " + couleur;
 
-      var description = "👕 " + type + " " + marque + " " + couleur + ", taille " + taille + ".\n\n";
-      description += "✅ État : " + etat + ".\n";
-      if (matiere !== "") {
-        description += "🧵 Matière : " + matiere + ".\n";
+      // TITRE
+      var titre = article + " taille " + taille + " - " + etat;
+      if (infosNiche.mots.length > 0) {
+        titre += " " + infosNiche.mots[0];
       }
-      if (prix !== "") {
-        description += "💶 Prix : " + prix + " € (négociable dans la limite du raisonnable).\n";
-      }
-      description += "\n📦 Envoi rapide et soigné.\n";
-      description += "💬 Une question ? Écris-moi, je réponds vite !\n";
-      description += "🔁 Pense à regarder mes autres articles : lot possible pour réduire les frais de port.";
 
+      // DESCRIPTION
+      var description = "";
+
+      if (ton === "court") {
+        description = article + ", taille " + taille + " - " + etat + ".\n";
+        if (prix !== "") {
+          description += "Prix : " + prix + " €.\n";
+        }
+        description += "Envoi rapide 📦";
+
+      } else if (ton === "decontracte") {
+        description = "Salut ! 👋 Je vends : " + article + ", taille " + taille + ".\n\n";
+        description += "✅ État : " + etat + ".\n";
+        if (matiere !== "") {
+          description += "🧵 Matière : " + matiere + ".\n";
+        }
+        if (prix !== "") {
+          description += "💶 " + prix + " €, on peut discuter 😉\n";
+        }
+        if (infosNiche.phrase !== "") {
+          description += "✨ " + infosNiche.phrase + "\n";
+        }
+        description += "\n📦 J'envoie vite et bien emballé !\n";
+        description += "💬 Une question ? Écris-moi !\n";
+        description += "🔁 Prends plusieurs articles, on s'arrange sur le lot !";
+
+      } else {
+        description = "👕 " + article + ", taille " + taille + ".\n\n";
+        description += "✅ État : " + etat + ".\n";
+        if (matiere !== "") {
+          description += "🧵 Matière : " + matiere + ".\n";
+        }
+        if (prix !== "") {
+          description += "💶 Prix : " + prix + " € (négociable dans la limite du raisonnable).\n";
+        }
+        if (infosNiche.phrase !== "") {
+          description += "✨ " + infosNiche.phrase + "\n";
+        }
+        description += "\n📦 Envoi rapide et soigné.\n";
+        description += "💬 Une question ? Écris-moi, je réponds vite !\n";
+        description += "🔁 Pense à regarder mes autres articles : lot possible pour réduire les frais de port.";
+      }
+
+      // MOTS-CLÉS
       var motscles = "#" + marque.replace(/ /g, "") +
         " #" + type.replace(/ /g, "") +
         " #" + couleur.replace(/ /g, "") +
-        " #taille" + taille.replace(/ /g, "") +
-        " #vinted #bonneaffaire";
+        " #taille" + taille.replace(/ /g, "");
+
+      for (var i = 0; i < infosNiche.mots.length; i++) {
+        motscles += " #" + infosNiche.mots[i];
+      }
+
+      motscles += " #vinted #bonneaffaire";
 
       document.getElementById("titre").innerText = titre;
       document.getElementById("description").innerText = description;
